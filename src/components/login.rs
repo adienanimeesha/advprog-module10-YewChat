@@ -13,7 +13,6 @@ pub fn login() -> Html {
 
     let oninput = {
         let current_username = username.clone();
-
         Callback::from(move |e: InputEvent| {
             let input: HtmlInputElement = e.target_unchecked_into();
             current_username.set(input.value());
@@ -27,13 +26,44 @@ pub fn login() -> Html {
     };
 
     html! {
-       <div class="bg-gray-800 flex w-screen">
-            <div class="container mx-auto flex flex-col justify-center items-center">
-                <form class="m-4 flex">
-                    <input {oninput} class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder="Username" />
-                    <Link<Route> to={Route::Chat}> <button {onclick} disabled={username.len()<1} class="px-8 rounded-r-lg bg-violet-600	  text-white font-bold p-4 uppercase border-violet-600 border-t border-b border-r" >{"Go Chatting!"}</button></Link<Route>>
-                </form>
-            </div>
+      <div
+        class="flex items-center justify-center w-screen h-screen"
+        style="background-color: #F2B4BD; font-family: 'VT323', monospace;"
+      >
+        <div class="flex flex-col items-center space-y-6 bg-white bg-opacity-85 p-8 rounded-2xl shadow-xl">
+          <h1
+            class="text-5xl flex items-center space-x-2"
+            style="font-family: 'Silkscreen', cursive; color: #333;"
+          >
+            <span>{"⭐️"}</span>
+            <span>{"YewChat"}</span>
+            <span>{"⭐️"}</span>
+          </h1>
+          <p class="text-lg text-gray-700 flex items-center space-x-2">
+            <span>{"Connect & chat with new people around the web"}</span>
+            <span>{"🌐"}</span>
+          </p>
+
+          <form class="flex items-center">
+            <input
+              {oninput}
+              class="rounded-l-lg p-4 border-t border-b border-l text-gray-800 border-gray-200 bg-white focus:outline-none"
+              placeholder="👤Username"
+              style="font-family: 'VT323', monospace;"
+            />
+            <Link<Route> to={Route::Chat}>
+              <button
+                {onclick}
+                disabled={username.len() < 1}
+                class="flex items-center px-6 rounded-r-lg text-white font-bold p-4 uppercase border-t border-b border-r shadow-md"
+                style="background-color: #F0C01D; border-color: #F0C01D; font-family: 'VT323', monospace;"
+              >
+                <span class="mr-2">{"📨"}</span>
+                <span>{"Start Chatting"}</span>
+              </button>
+            </Link<Route>>
+          </form>
         </div>
+      </div>
     }
 }
